@@ -95,6 +95,7 @@ export class Service{
     }
 
 
+    
     //bucket
     async uploadFile(file){
         try {
