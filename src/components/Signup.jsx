@@ -29,7 +29,43 @@ const Signup = () => {
     }
   return (
     <div>
-      
+      <div>
+        <div>Logo</div>
+        <h2>Sign Up to your account</h2>
+        <p>Already have an account? <Link to="/signup">Log In</Link></p>
+        {error && <p>{error}</p>}
+        <form onSubmit={handelSubmit(create)}>
+            <div>
+                <Input
+                    label="Full name:"
+                    placeholder="Enter your full name"
+                    {...register("name", {
+                        required: true,
+                    })}
+                />
+                <Input 
+                label="Email"
+                placeholder="Enter your email"
+                typr="email"
+                {...register("email",
+                    {required:true,
+                    validate:{
+                        matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                        "Email address must be a valid address",
+                    }})
+                }/>
+                <Input
+                label="Password: "
+                type="password"
+                placeholder="Enter your password"
+                {...register("password",{
+                    required:true,
+                })}
+                />
+                <Button type="submit">Sign Up</Button>
+            </div>
+        </form>
+      </div>
     </div>
   )
 }
