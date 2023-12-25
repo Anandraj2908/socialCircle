@@ -17,19 +17,25 @@ export default function Post() {
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
-                else navigate("/");
+                if(post){
+                    setPost(post);
+                } 
+                else{
+                    navigate("/");
+                } 
             });
         } else navigate("/");
     }, [slug, navigate]);
 
     const deletePost = () => {
+        
         appwriteService.deletePost(post.$id).then((status) => {
             if (status) {
                 appwriteService.deleteFile(post.featuredImage);
                 navigate("/");
             }
         });
+        console.log("Post Deleted ")
     };
 
     return post ? (
@@ -45,11 +51,11 @@ export default function Post() {
                     {isAuthor && (
                         <div >
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" >
+                                <Button  >
                                     Edit
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
+                            <Button  onClick={deletePost}>
                                 Delete
                             </Button>
                         </div>

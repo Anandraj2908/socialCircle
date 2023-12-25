@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 const Signup = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {register, handelSubmit} = useForm()
+    const {register, handleSubmit} = useForm()
     const [error, setError] = useState("");
 
     const create = async(data) => {
@@ -32,9 +32,9 @@ const Signup = () => {
       <div>
         <div>Logo</div>
         <h2>Sign Up to your account</h2>
-        <p>Already have an account? <Link to="/signup">Log In</Link></p>
+        <p>Already have an account? <Link to="/login">Log In</Link></p>
         {error && <p>{error}</p>}
-        <form onSubmit={handelSubmit(create)}>
+        <form onSubmit={handleSubmit(create)}>
             <div>
                 <Input
                     label="Full name:"
@@ -46,7 +46,7 @@ const Signup = () => {
                 <Input 
                 label="Email"
                 placeholder="Enter your email"
-                typr="email"
+                type="email"
                 {...register("email",
                     {required:true,
                     validate:{

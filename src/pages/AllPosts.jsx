@@ -5,16 +5,13 @@ import {Container, PostCard} from "../components/index"
 const AllPosts = () => {
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => {}, [])
+    appwriteService.getPosts([]).then((posts) => {
+        if (posts) {
+            setPosts(posts.documents)
+        }
+    })
 
-    }, [])
-
-    appwriteService.getPost([])
-        .then((posts) => {
-            if(posts){
-                setPosts(posts.documents)
-            }
-        })
 
   return (
     <div>
@@ -22,7 +19,7 @@ const AllPosts = () => {
         <div>
         {posts.map((post) => (
             <div key={post.$id}>
-                <PostCard post={post}/>
+                <PostCard {...post}/>
             </div>
         ))}
         </div>

@@ -4,6 +4,7 @@ import './App.css'
 import authService from "./appwrite/auth"
 import {login, logout} from "./store/authSlice"
 import { Footer, Header } from './components/index'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
   return !loading ? (
     <div className="myContainer">
       <Header/>
-      Test
+      <Outlet/>
       <Footer/>
     </div>
   ) : (

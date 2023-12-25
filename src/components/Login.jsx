@@ -9,7 +9,7 @@ import {Button, Input} from "./index"
 const Login = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {register, handelSubmit} = useForm()
+    const {register, handleSubmit} = useForm()
 
     const [error, setError] = useState("");
 
@@ -35,12 +35,12 @@ const Login = () => {
         <h2>Sign in to your account</h2>
         <p>Don&apos;t have an account? <Link to="/signup">Sign Up</Link></p>
         {error && <p>{error}</p>}
-        <form onSubmit={handelSubmit(login)}>
+        <form onSubmit={handleSubmit(login)}>
             <div>
                 <Input 
                 label="Email"
                 placeholder="Enter your email"
-                typr="email"
+                type="email"
                 {...register("email",
                     {required:true,
                     validate:{
